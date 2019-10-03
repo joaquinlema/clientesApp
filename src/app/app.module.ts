@@ -5,6 +5,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken} from '@angular/fire/firestore';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -38,6 +39,7 @@ import { PiePaginaComponent } from './componentes/pie-pagina/pie-pagina.componen
     AngularFirestoreModule,
     AngularFireAuthModule,
     FormsModule,
+    FlashMessagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
