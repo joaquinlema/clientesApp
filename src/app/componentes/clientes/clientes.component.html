@@ -26,6 +26,7 @@
                 <th>#</th>
                 <th>Nombre</th>
                 <th>Saldo</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -33,6 +34,11 @@
                 <td>{{i + 1}}</td>
                 <td>{{cliente.nombre}} {{cliente.apellido}}</td>
                 <td>{{cliente.saldo | currency: 'MXN' : '$'}}</td>
+                <td>
+                  <a routerLink='/cliente/editar/{{cliente.id}}' class="btn btn-secondary">
+                  <i class="fas fa-angle-double-right"></i> Editar
+                </a>
+                </td>
               </tr>
             </tbody>
           </table>
