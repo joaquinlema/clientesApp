@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ClienteServicio } from 'src/app/servicios/cliente.service';
 import { Cliente } from 'src/app/modelo/cliente.model';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-clientes',
@@ -17,6 +18,10 @@ export class ClientesComponent implements OnInit {
     email: '',
     saldo: 0
   };
+
+  // guardamos referencia del formulario y del boton guardar
+  @ViewChild('clienteForm') clienteForm: NgForm;
+  @ViewChild('botonCerrar') botonCerrar: ElementRef;
 
   constructor(private clientesServicio: ClienteServicio,
               private flashMessages: FlashMessagesService) { }
@@ -47,6 +52,13 @@ export class ClientesComponent implements OnInit {
       });
     } else {
       // agregamos el metodo en el servicio
+      this.clientesServicio.agregarCliente(value);
+      this.clienteForm.resetForm(); // limpiamos el formulario
+      this.cerrarModal();
     }
+  }
+
+  private cerrarModal() {
+    this.botonCerrar.nativeElement.click();
   }
 }
