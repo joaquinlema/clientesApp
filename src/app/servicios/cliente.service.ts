@@ -37,6 +37,11 @@ export class ClienteServicio {
     this.clientesColeccion.add(cliente);
   }
 
+  modificar(cliente: Cliente) {
+    this.clienteDoc = this.db.doc(`clientes/${cliente.id}`);
+    this.clienteDoc.update(cliente);
+  }
+
   getCliente(id: string) {
     this.clienteDoc = this.db.doc<Cliente>(`clientes/${id}`);
     this.cliente = this.clienteDoc.snapshotChanges().pipe(

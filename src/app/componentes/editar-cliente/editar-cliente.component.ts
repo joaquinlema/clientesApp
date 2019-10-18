@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Cliente } from 'src/app/modelo/cliente.model';
 import { ClienteServicio } from 'src/app/servicios/cliente.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-editar-cliente',
@@ -20,6 +21,8 @@ export class EditarClienteComponent implements OnInit {
 
   id: string;
 
+  @ViewChild('clienteForm') clienteForm: NgForm;
+
   constructor(private clientesServicio: ClienteServicio,
     private flashMessages: FlashMessagesService,
     private router: Router,
@@ -32,4 +35,22 @@ export class EditarClienteComponent implements OnInit {
       this.cliente = cliente;
     });
   }
+
+  guardar({value, valid}: {value: Cliente, valid: boolean}) {
+    if (!valid) {
+      this.flashMessages.show('Por favor llenar el formulario correctamente', {
+        cssClass: 'alert-danger', timeout: 4000
+      });
+    } else {
+      value.id = this.id;
+      this.clientesServicio.modificar(value);
+      this.router.navigate(['/']);
+    }
+  }
+
+  eliminar() {
+
+  }
+
+
 }
