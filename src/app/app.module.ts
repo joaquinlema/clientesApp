@@ -5,7 +5,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken} from '@angular/fire/firestore';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
-import { FlashMessagesModule } from 'angular2-flash-messages';
+import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,7 +42,7 @@ import { ClienteServicio } from './servicios/cliente.service';
     FormsModule,
     FlashMessagesModule
   ],
-  providers: [ClienteServicio],
+  providers: [ClienteServicio, FlashMessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
