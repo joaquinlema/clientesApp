@@ -21,8 +21,6 @@ export class EditarClienteComponent implements OnInit {
 
   id: string;
 
-  @ViewChild('clienteForm') clienteForm: NgForm;
-
   constructor(private clientesServicio: ClienteServicio,
     private flashMessages: FlashMessagesService,
     private router: Router,
@@ -43,13 +41,16 @@ export class EditarClienteComponent implements OnInit {
       });
     } else {
       value.id = this.id;
-      this.clientesServicio.modificar(value);
+      this.clientesServicio.modificarCliente(value);
       this.router.navigate(['/']);
     }
   }
 
   eliminar() {
-
+    if(confirm('Seguro desea eliminar el cliente?')) {
+      this.clientesServicio.eliminarCliente(this.cliente);
+      this.router.navigate(['/']);
+    }
   }
 
 
