@@ -17,14 +17,20 @@ export class CabeceroComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-  this.loginService.getAuth().subscribe( auth => {
-    if (auth) {
-      this.isLoggedIn = true;
-      this.loggedInUser = auth.email;
-    } else {
-      this.isLoggedIn = false;
-    }
-  });
+    this.loginService.getAuth().subscribe( auth => {
+      if (auth) {
+        this.isLoggedIn = true;
+        this.loggedInUser = auth.email;
+      } else {
+        this.isLoggedIn = false;
+      }
+    });
+  }
+
+  logout() {
+    this.loginService.logout();
+    this.isLoggedIn = false;
+    this.router.navigate(['/login']);
   }
 
 }
