@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { LoginService } from 'src/app/servicios/login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,19 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
   constructor(private router: Router,
-    private flashMessages: FlashMessagesService) { }
+    private flashMessages: FlashMessagesService,
+    private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
   login() {
-
+    this.loginService.Login(this.email, this.password)
+    .then(res => {
+      this.router.navigate(['/']);
+    })
+    .catch(error => {
+      this.flashMessages.show(error.message);
+    });
   }
 }
