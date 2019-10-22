@@ -2,7 +2,9 @@ import { CanActivate, Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class AuthGuard implements CanActivate {
 
   constructor( private router: Router,
